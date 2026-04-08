@@ -3,35 +3,35 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react"
 const projects =[
     {
         id: 1,
-        title: "Nikes",
-        description: "Sticker inspired by Frank Ocean's 'Nikes'",
-        image: "projects/nikes.png",
-        tags: ["Illustrator", "Vector"],
-        collection: ["Blonded"],
+        title: "Pacific Park",
+        description: "A Photo of some rides at Pacific Park in California.",
+        image: "projects/pacificpark.JPG",
+        tags: ["Photoshop", "Photography"],
         demoUrl: "#",
-        githubUrl: "#"
+        githubUrl: "#",
+        motion: false,
     },
 
     {
         id: 2,
-        title: "MF LOU",
-        description: "Sticker of my cat Louie inspired by legendary rapper MF DOOM",
-        image: "projects/mflou.png",
-        tags: ["Illustrator", "Vector"],
-        collection: ["Lou"],
+        title: "Motion Tiles",
+        description: "Animated pulsing dots for a loading or transition scene.",
+        image: "projects/motiontiles.mp4",
+        tags: ["After Effects", "Motion"],
         demoUrl: "#",
-        githubUrl: "#"
+        githubUrl: "#",
+        motion: true,
     },
 
     {
         id: 3,
         title: "Little Lani's Text Logo",
-        description: "The text logo for Little Lani's mock brand.",
+        description: "The logo for Little Lani's, a mock brand inspired by my cousin.",
         image: "projects/littlelanis.png",
         tags: ["Illustrator", "Vector"],
-        collection: ["Blonded"],
         demoUrl: "#",
-        githubUrl: "#"
+        githubUrl: "#",
+        motion: false,
     }
 ]
 
@@ -53,7 +53,9 @@ export const Projects = () => {
                     {projects.map((project, key) => (
                             <div key={key} className="group bg-card rounded-lg overlfow-hidden shadow-xs card-hover">
                                 <div className="h-48 overflow-hidden">
-                                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                                    {project.motion === true && <video src={project.image} alt={project.title} loop autoPlay={true} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>}
+                                    {project.motion != true && <img src={project.image} alt={project.title} className="w-full h-full object-cover
+                                    transition-transform duration-500 group-hover:scale-110"/>}
                                 </div>
 
                                 <div className="p-6">
@@ -78,14 +80,6 @@ export const Projects = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                <div className="text-center mt-12">
-                    <a className="cosmic-button w-fit flex items-center mx-auto gap-2" 
-                    target="https://#"
-                    href="add link">
-                        See All Projects <ArrowRight size={16}/>
-                    </a>
                 </div>
             </div>
         </section>
