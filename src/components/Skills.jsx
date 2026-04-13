@@ -5,12 +5,12 @@ const skills =[
     
     //Adobe Creative Suite
     {name: "Illustrator", level: 95, category: "adobe"},
-    {name: "After Effects", level: 80, category: "adobe"},
-    {name: "Photoshop", level: 80, category: "adobe"},
+    {name: "After Effects", level: 90, category: "adobe"},
+    {name: "Photoshop", level: 90, category: "adobe"},
 
     //Coding Languages, adjust levels
-    {name: "C++", level: 95, category: "language"},
-    {name: "C#", level: 80, category: "language"},
+    {name: "C++", level: 85, category: "language"},
+    {name: "C#", level: 85, category: "language"},
     {name: "Python", level: 80, category: "language"},
     {name: "HTML/CSS", level: 80, category: "language"},
     {name: "TailwindCSS", level: 80, category: "language"},
@@ -22,6 +22,7 @@ const skills =[
     {name: "GitHub", level: 95, category: "tools"},
     {name: "Figma", level: 95, category: "tools"},
     {name: "Instagram", level: 95, category: "tools"},
+    {name: "Ableton Live", level: 95, category: "tools"},
 ]
 
 const categories = ["all", "adobe", "language", "tools"]

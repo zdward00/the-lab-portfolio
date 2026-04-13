@@ -4,7 +4,7 @@ const projects =[
     {
         id: 1,
         title: "Pacific Park",
-        description: "A Photo of some rides at Pacific Park in California.",
+        description: "A photo of some rides at Pacific Park in California.",
         image: "projects/pacificpark.JPG",
         tags: ["Photoshop", "Photography"],
         demoUrl: "#",

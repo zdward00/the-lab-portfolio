@@ -13,14 +13,13 @@ export const About = () => {
                     <h3 className="text-2xl font-semibold">Curious About Everything</h3> 
 
                     <p className="text-muted-foreground"> 
-                        I built this website using ReactJS and TailwindCSS. I plan to continue to continue
-                        to use it to further develop my UI/UX development skills while also showcasing 
-                        other projects.
+                        From web development to graphic design to sports, I have a number of hobbies and interests. 
+                        I built this website to showcase the projects I've worked on and how they interconnect. 
                     </p>
 
                     <p className="text-muted-foreground"> 
-                        From web development to graphic design to sports, I have a number of hobbies. I believe
-                        this website will highlight the ways I've found that they build on one another.  
+                        I plan to continue to use this site to further develop my web development 
+                        and UI/UX skills while also curating a home for my work.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -44,8 +43,8 @@ export const About = () => {
                             <div className="text-left">
                                 <h4 className="font-semibold text-lg"> Coding</h4>
                                 <p className="text-muted-foreground">
-                                    I've studied multiple languages in a univeristy setting 
-                                    includng C++, C#, Python, HTML, JavaScript, and CSS.  
+                                    I enjoy creating small-scale games, audio plug-ins,
+                                    and websites using C++, C#, HTML, JavaScript, and CSS.  
                                 </p>
                             </div>
                         </div>
@@ -59,8 +58,7 @@ export const About = () => {
                                 <h4 className="font-semibold text-lg"> Graphic Design</h4>
                                 <p className="text-muted-foreground">
                                     I use Adobe Creative Suite to create digital artwork for
-                                    mock brands to be used to generate 
-                                    merchandise such as clothing and stickers. 
+                                    clothing, stickers, and promos for mock brands. 
                                 </p>
                             </div>
                         </div>
@@ -73,9 +71,9 @@ export const About = () => {
                             <div className="text-left">
                                 <h4 className="font-semibold text-lg"> Music Production</h4>
                                 <p className="text-muted-foreground">
-                                    I use Ableton Live to produce music soundtracks
+                                    I use Ableton Live to produce music and soundtracks
                                     for games and vizualizers. As a bass player, I 
-                                    also enjoy recording a play session.  
+                                    also enjoy recording play sessions.  
                                 </p>
                             </div>
                         </div>
