@@ -15,7 +15,7 @@ const projects =[
     {
         id: 2,
         title: "Motion Tiles",
-        description: "Animated pulsing dots for a loading or transition scene.",
+        description: "Pulsing dots for a loading or transition scene.",
         image: "projects/motiontiles.mp4",
         tags: ["After Effects", "Motion"],
         demoUrl: "#",
@@ -67,16 +67,6 @@ export const Projects = () => {
 
                                 <h3 className="text-xl font-semibold mb-1"> {project.title} </h3>
                                 <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                                <div className="flex justify-between items-center">
-                                    <div className="flex space-x-3">
-                                        <a href={project.demoUrl} 
-                                        target="_blank" //link to site
-                                        className="text-foreground/8- hover:text-primary transition-colors duration-300"> <ExternalLink size={20}/> </a>
-                                        <a href={project.githubUrlUrl} 
-                                        target="_blank" //link to github
-                                        className="text-foreground/8- hover:text-primary transition-colors duration-300"> <Github size={20}/> </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     ))}
