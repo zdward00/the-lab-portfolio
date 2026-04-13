@@ -12,6 +12,7 @@ function App() {
 
   return (
     <>
+    <ThemeToggle />
     <Toaster />
       <BrowserRouter>
         <Routes>
