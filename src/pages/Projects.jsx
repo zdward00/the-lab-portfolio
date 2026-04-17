@@ -7,10 +7,10 @@ import { Skills } from "../components/Skills"
 import { ProjectSection } from "../components/ProjectSection"
 import { Contact } from "../components/Contact"
 import { Footer } from "../components/Footer"
-import { WhatsNext } from "../components/WhatsNext"
+//import { Music } from "../components/Music"
 import { AllProjects } from "../components/AllProjects"
 
-export const Home = () => {
+export const Projects = () => {
 
     return(
 
@@ -18,7 +18,7 @@ export const Home = () => {
 
 
         {/* Theme Toggle */}
-        {/* <ThemeToggle />  */}
+        <ThemeToggle />
 
         {/* Background Effects */}
         <StarBackground />
@@ -28,16 +28,12 @@ export const Home = () => {
 
         {/* Main Content */}
         <main>
-            <HeroSection />
-            <About />
-            <Skills />
-            <ProjectSection />
-            <WhatsNext />
-            <Contact />
+            <AllProjects />
         </main>
 
         {/* Footer */}
         <Footer />
+        
     </div>
     )
 }

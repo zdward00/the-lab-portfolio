@@ -1,4 +1,5 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const projects =[
     {
@@ -25,7 +26,7 @@ const projects =[
 
     {
         id: 3,
-        title: "Little Lani's Text Logo",
+        title: "Little Lani's Logo",
         description: "The logo for Little Lani's, a mock brand inspired by my cousin.",
         image: "projects/littlelanis.png",
         tags: ["Illustrator", "Vector"],
@@ -35,7 +36,7 @@ const projects =[
     }
 ]
 
-export const Projects = () => {
+export const ProjectSection = () => {
 
     return (
         <section id="projects" className="py-23 px-4 relative">
@@ -70,6 +71,12 @@ export const Projects = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+                 <div className="text-center mt-12">
+                    <a href="/projects" className="cosmic-button w-fit flex items-center mx-auto gap-2" 
+                    >
+                        <span>See All Projects </span> <ArrowRight size={16}/>
+                    </a>
                 </div>
             </div>
         </section>
