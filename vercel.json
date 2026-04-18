@@ -1,9 +1,9 @@
 {
- "$schema": "./vercel.schema.json",
+ "$schema": "./vercel.json",
   "rewrites": [
     {
       "source": "/projects",
-      "destination": "/Projects.jsx"
+      "destination": "./pages/Projects.jsx"
     }
   ]
 }
