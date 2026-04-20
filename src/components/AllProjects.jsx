@@ -1,13 +1,14 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+
 //import { ImageGallery } from "./ImageGallery"
 //import { Box } from "./Box"
 //import { slides } from "../data/slides.js"
-//import Lightbox from "yet-another-react-lightbox";
-//import "yet-another-react-lightbox/styles.css";
-//import "yet-another-react-lightbox/plugins/thumbnails.css";
-//import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 
 
 
@@ -268,7 +269,7 @@ export const AllProjects = () => {
     // const [activeCollection, setActiveCollection] = useState("all");
     const [isExpanded, setIsExpanded] = useState(false);
     const [activeId, setActiveId] = useState(null);
-    // const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const filteredProjects = projects.filter((project) => activeCategory === "all" || project.category === activeCategory);
     // const collections = projects.filter((project) => activeCollection === "all" || project.collection === activeCollection);
@@ -278,6 +279,7 @@ export const AllProjects = () => {
         // If clicking same image, close it; otherwise, open new one
         setActiveId(activeId === id ? null : id);
         // setActiveCollection(activeCollection === collection ? null : collection);
+        setOpen(!open);
         
     };
     return (
@@ -329,6 +331,17 @@ export const AllProjects = () => {
                                         <div className="flex justify-center mb-2">
                                                 {/* for some reason toggleExpand(project.id) doesn't work but setIsExpanded(!isExpanded) does...sometimes?*/}
                                                 {/* sometimes toggle works and sometimes set works...not sure why */}
+                                                <button onClick={() => setOpen(true)} className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"> 
+                                                Expand 
+                                                </button>
+                                                <Lightbox
+                                                    open={open}
+                                                    close={() => setOpen(false)}
+                                                    slides={[
+                                                    { src: "birds.JPG" },
+                                                    ]}
+                                                />
+                                                
                                         </div>
                                         {/* imagegallery works but is still stuck inside div */}
                                         {/* seems to be expanding once then not again */}
