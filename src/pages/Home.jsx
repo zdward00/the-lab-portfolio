@@ -30,8 +30,8 @@ export const Home = () => {
         <main>
             <HeroSection />
             <About />
-            <Skills />
             <ProjectSection />
+            <Skills />
             <WhatsNext />
             <Contact />
         </main>

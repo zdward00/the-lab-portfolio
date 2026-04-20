@@ -28,7 +28,7 @@ const projects =[
         id: 3,
         title: "Little Lani's Logo",
         description: "The logo for Little Lani's, a mock brand inspired by my cousin.",
-        image: "projects/littlelanis.png",
+        image: "projects/lanis.png",
         tags: ["Illustrator", "Vector"],
         demoUrl: "#",
         githubUrl: "#",
