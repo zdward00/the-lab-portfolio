@@ -1,14 +1,16 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Github, X } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
-
+import * as React from "react";
+import {motion, AnimatePresence } from "framer-motion"
 //import { ImageGallery } from "./ImageGallery"
-//import { Box } from "./Box"
-//import { slides } from "../data/slides.js"
+import { Box } from "./Box"
+import { slides } from "../data/slides.js"
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Video from "yet-another-react-lightbox/plugins/video";
 
 
 
@@ -154,7 +156,7 @@ const projects =[
         image: "projects/laflame.mp4",
         tags: ["After Effects", "Motion"],
         category: "motion",
-        collection: "",
+        collection: "Rodeo",
     },
     {
         id: 16,
@@ -255,11 +257,101 @@ const projects =[
         category: "photography",
         collection: "",
     },
+    {
+        id: 27,
+        title: "Louie",
+        description: "A vectorized image of my cat, Louie",
+        image: "projects/lou.png",
+        tags: ["Illustrator", "Vector"],
+        category: "vector",
+        collection: "Lou",
+    },
+    {
+        id: 28,
+        title: "Blonded Rodeo Hoodie",
+        description: "A mockup of a hoodie for my favorite album, Rodeo, in the style of another favorite album, Blonde",
+        image: "projects/hoodie.jpg",
+        tags: ["Illustrator", "Vector", "Fashion"],
+        category: "fashion",
+        collection: "Rodeo",
+    },
+    {
+        id: 29,
+        title: "Printed Rodeo Hoodie",
+        description: "A completed version of the Rodeo hoodie modeled by my brother",
+        image: "projects/completehoodie.JPG",
+        tags: ["Illustrator", "Vector", "Fashion"],
+        category: "fashion",
+        collection: "Rodeo",
+    },
+    {
+        id: 30,
+        title: "Rodeo Brutalism",
+        description: "A brutalist t-shirt design using Travis Scott's Rodeo as inspiration. Also comes in black.",
+        image: "projects/brutalist.jpg",
+        tags: ["Illustrator", "Vector", "Fashion"],
+        category:"fashion",
+        collection: "Rodeo",
+    },
+    {
+        id: 31,
+        title: "Rodeo Poster",
+        description: "A poster for Travis Scott's album Rodeo",
+        image: "projects/rodeoposter.png",
+        tags: ["Illustrator", "Vector", "Photoshop"],
+        category: "vector",
+        collection: "Rodeo",
+    },
+    {
+        id: 32,
+        title: "Norfolk Admirals Promo 1",
+        description: "Promotional art for the Norfolk Admirals",
+        image: "projects/admirals1.jpg",
+        tags: ["Illustrator", "Vector", "Photoshop"],
+        category: "vector",
+        collection: "Sports",
+    },
+    {
+        id: 33,
+        title: "Norfolk Admirals Promo 2",
+        description: "Another promo for the Norfolk Admirals",
+        image: "projects/admirals2.jpg",
+        tags: ["Illustrator", "Vector", "Photoshop"],
+        category: "vector",
+        collection: "Sports",
+    },
+    {
+        id: 34,
+        title: "Little Lani's T-shirt",
+        description: "Merchandise for the Little Lani's Brand",
+        image: "projects/lanisshirt.jpg",
+        tags: ["Illustrator", "Vector", "Photoshop"],
+        category: "fashion",
+        collection: "Lanis",
+    },
+    {
+        id: 35,
+        title: "Wave Next Match Promo",
+        description: "Promo material for local soccer club Wave Futbol Club",
+        image: "projects/nextmatch.mp4",
+        tags: ["After Effects", "Motion", "Photoshop"],
+        category: "motion",
+        collection: "Sports",
+    },
+    {
+        id: 36,
+        title: "Wave Match Schedule",
+        description: "Spring '25 match schedule for Wave Futbol Club",
+        image: "projects/wave.png",
+        tags: ["Illustrator", "Vector", "Photoshop"],
+        category: "vector",
+        collection: "Sports",
+    },
 ]
 
 
 
-const categories = ["all", "vector", "motion", "photography", "web development"]
+const categories = ["all", "vector", "motion", "photography", "fashion"]
 // const collections = ["rodeo", "lanis", "zerostate"]
 
 
@@ -267,21 +359,45 @@ export const AllProjects = () => {
 
     const [activeCategory, setActiveCategory] = useState("all"); //this should be how to categorize projects in the future, create a use state for active category, categories located in arrays
     // const [activeCollection, setActiveCollection] = useState("all");
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [activeId, setActiveId] = useState(null);
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     const filteredProjects = projects.filter((project) => activeCategory === "all" || project.category === activeCategory);
     // const collections = projects.filter((project) => activeCollection === "all" || project.collection === activeCollection);
     
-    const toggleExpand = (id, collection) => {
-        setIsExpanded(!isExpanded);
-        // If clicking same image, close it; otherwise, open new one
-        setActiveId(activeId === id ? null : id);
-        // setActiveCollection(activeCollection === collection ? null : collection);
-        setOpen(!open);
-        
+    const relatedProjects = selectedProject
+    ? projects.filter(
+        (p) =>
+            p.collection &&
+            p.collection === selectedProject.collection &&
+            p.id !== selectedProject.id
+        )
+    : [];
+
+    const projectGroup = selectedProject
+        ? projects.filter(
+            (p) =>
+                p.collection &&
+                p.collection === selectedProject.collection
+            )
+        : [];
+
+    const currentIndex = projectGroup.findIndex(
+        (p) => p.id === selectedProject?.id
+        );
+
+    const goNext = () => {
+        if (!projectGroup.length) return;
+        const nextIndex = (currentIndex + 1) % projectGroup.length;
+        setSelectedProject(projectGroup[nextIndex]);
     };
+
+    const goPrev = () => {
+        if (!projectGroup.length) return;
+        const prevIndex = (currentIndex - 1 + projectGroup.length) % projectGroup.length;
+        setSelectedProject(projectGroup[prevIndex]);
+    };
+
     return (
         <section id="allprojects" className="py-23 px-4 relative">
             <div className="container mx-auto max-w-7xl">
@@ -310,8 +426,8 @@ export const AllProjects = () => {
                 
                 {activeCategory && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredProjects.map((project, key) => 
-                                    <div key={key} className="bg-card rounded-lg overflow-hidden shadow-xs card-hover">
+                        {filteredProjects.map((project, key) => (
+                                    <div key={key} onClick={() => setSelectedProject(project)} className="bg-card rounded-lg overflow-hidden shadow-xs card-hover cursor-pointer group">
                                         <div className="h-96 overflow-hidden">
                                             {project.category === "motion" && <video src={project.image} alt={project.title} controls className="w-full h-full object-fit transition-transform duration-500 group-hover:scale-110"/>}
                                             {project.category != "motion" && <img src={project.image} alt={project.title} className="w-full h-full object-cover
@@ -326,36 +442,123 @@ export const AllProjects = () => {
                                             </div>
 
                                             <h3 className="text-xl font-semibold mb-1"> {project.title} </h3>
-                                            <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                                        </div>
-                                        <div className="flex justify-center mb-2">
-                                                {/* for some reason toggleExpand(project.id) doesn't work but setIsExpanded(!isExpanded) does...sometimes?*/}
-                                                {/* sometimes toggle works and sometimes set works...not sure why */}
-                                                <button onClick={() => setOpen(true)} className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"> 
-                                                Expand 
-                                                </button>
-                                                <Lightbox
-                                                    open={open}
-                                                    close={() => setOpen(false)}
-                                                    slides={[
-                                                    { src: "birds.JPG" },
-                                                    ]}
-                                                />
-                                                
-                                        </div>
-                                        {/* imagegallery works but is still stuck inside div */}
-                                        {/* seems to be expanding once then not again */}
                                         
-                                    </div>
-                                    
-                                    
-                                        
-                        )}
-                         
-            
+                                        </div>
+
+                                    </div>        
+                        ))}
                     </div>
                 )}
-                {/* Content is only rendered if isExpanded is true */}
+                
+                {/* Modal */}
+                {selectedProject && (
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+                    <div className="bg-card max-w-4xl rounded-xl p-10 overflow-hidden relative">
+
+                        <button
+                        onClick={() => setSelectedProject(null)}
+                        className="absolute top-4 right-4 cursor-pointer"
+                        >
+                        <X />
+                        </button>
+
+                        <button
+                            onClick={goPrev}
+                            className="absolute left-4 top-1/2 -translate-y-1/2  rounded-full cursor-pointer"
+                        >
+                            <ChevronLeft />
+                        </button>
+
+                        <button
+                            onClick={goNext}
+                        className="absolute right-4 top-1/2 -translate-y-1/2  rounded-full cursor-pointer"
+                        >
+                            <ChevronRight />
+                        </button>
+
+                        <div className="grid md:grid-cols-2">
+                        <div className="h-100 md:h-full relative overflow-hidden">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                key={selectedProject.id}
+                                initial={{ opacity: 0, scale: 0.98 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.98 }}
+                                transition={{ duration: 0.25 }}
+                                className="w-full h-full"
+                                >
+                                {selectedProject.category === "motion" ? (
+                                    <video
+                                    src={selectedProject.image}
+                                    controls
+                                    className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <img
+                                    src={selectedProject.image}
+                                    alt={selectedProject.title}
+                                    className="w-full h-full object-cover"
+                                    />
+                                )}
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+
+                        <div className="p-6">
+                            <h2 className="text-2xl font-bold mb-4">
+                            {selectedProject.title}
+                            </h2>
+
+                            <p className="text-gray-600">
+                            {selectedProject.description}
+                            </p>
+
+                            
+                        </div>
+                        </div>
+                        {relatedProjects.length > 0 && (
+                            <>
+                                <h3 className="font-semibold mb-3 pt-6">Related Projects</h3>
+
+                                <div className="flex gap-5 overflow-x-auto">
+                                {relatedProjects.map((proj) => (
+                                    <div
+                                        key={proj.id}
+                                        onClick={() => setSelectedProject(proj)}
+                                        className={cn(
+                                            "w-24 h-24 flex-shrink-0 cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-200",
+                                            
+                                            // active state
+                                            proj.id === selectedProject.id
+                                            ? "border-primary scale-105"
+                                            : "border-transparent",
+
+                                            // hover state
+                                            "hover:border-primary"
+                                        )}
+                                    >
+                                    <div className="relative w-full h-full group">
+                                        {proj.category === "motion" ? (
+                                            <video src={proj.image} className="w-full h-full object-cover" />
+                                        ) : (
+                                            <img src={proj.image} className="w-full h-full object-cover" />
+                                        )}
+
+                                        <div className="absolute inset-0 backdrop-blur-sm bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs">
+                                            View
+                                        </div>
+                                    </div>
+                                    </div>
+                                ))}
+                                </div>
+                                </>
+                            )}
+                            
+                    </div>
+                    </div>
+                )}
+                
+                
                 
                 
             </div>
