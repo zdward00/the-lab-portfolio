@@ -4,7 +4,7 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Video from "yet-another-react-lightbox/plugins/video";
-import { slides } from "../data/slides";
+import { projects } from "../data/projects.js";
 import { AllProjects } from "./AllProjects";
 
 
